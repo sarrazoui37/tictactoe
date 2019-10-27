@@ -1,15 +1,15 @@
 import tic_functions
 
-m_validation=tic_functions.move_validation
-b_change=tic_functions.block_change
-w_condition=tic_functions.win_condition
+m_validation = tic_functions.move_validation
+b_change = tic_functions.block_change
+w_conditions = tic_functions.win_condition
 
 
 game_board = [
     1, 2, 3,
     4, 5, 6,
     7, 8, 9
-]
+    ]
 
 player_1_turn = True
 winner = False
@@ -44,19 +44,22 @@ while winner is False:
 
     b_change(player_1_turn, game_board_input, game_board)
 
+    # win condition
+    if w_conditions(game_board) == True:
+        winner = True
+        break
+
     player_1_turn = not player_1_turn
 
-    # win conditions
-    if 'X'*3 in game_board or 'O'*3 in game_board:
-        winner = True
-        print(
-            game_board[:3]
-        )
-        print(
-            game_board[3:6]
-        )
-        print(
-            game_board[6:]
-        )
 
-print('You win!')
+if winner is True:
+    print(
+        game_board[:3]
+    )
+    print(
+        game_board[3:6]
+    )
+    print(
+        game_board[6:]
+    )
+    print('You win!')
